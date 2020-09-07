@@ -1,0 +1,83 @@
+<div
+	class="container pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
+>
+	<h1 class="display-4">User's Listing</h1>
+	<p class="lead">
+		A quick CRUD example of how to integrate Rails with Angular
+	</p>
+
+	<table class="table">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Address</th>
+			<th>Actions</th>
+		</tr>
+
+		<tbody>
+			<tr *ngFor="let user of users">
+				<td>{{ user.id }}</td>
+				<td>{{ user.name }}</td>
+				<td>{{ user.age }}</td>
+				<td>{{ user.address }}</td>
+				<td colspan="2">
+					<button class="btn btn-secondary" (click)="editUser(user, template)">
+						Edit
+					</button>
+					|
+					<button class="btn btn-danger" (click)="deleteUser(user.id)">
+						Delete
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btn btn-primary float-right mt-4" (click)="newUser(template)">
+		Insert New
+	</button>
+</div>
+
+<ng-template #template>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">
+			{{ isNew ? "New User" : "Update User" }}
+		</h4>
+		<button
+			type="button"
+			class="close pull-right"
+			aria-label="Close"
+			(click)="modalRef.hide()"
+		>
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form
+			[formGroup]="userForm"
+			(ngSubmit)="isNew ? createUser() : updateUser()"
+			novalidate
+		>
+			<input type="hidden" formControlName="id" class="form-control" />
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" formControlName="name" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>Age</label>
+				<input type="text" formControlName="age" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>Address</label>
+				<textarea
+					class="form-control"
+					formControlName="address"
+					rows="3"
+				></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</ng-template>
