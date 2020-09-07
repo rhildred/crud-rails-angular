@@ -1,24 +1,23 @@
-# README
+# How to Start It Up?
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To start this app up, make sure to have the latest versions of Node, Ruby, and Rails. Yarn is also nice to have.
 
-Things you may want to cover:
+Then, run:
 
-* Ruby version
+```
+cd crud-rails-angular
 
-* System dependencies
+bundle install
+bundle exec rake webpacker:install
+bundle exec rake webpacker:install:angular
+rails db:migrate
+rake db:seed
 
-* Configuration
+yarn
+```
 
-* Database creation
+Then, to start it up, run:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+rails s
+```
